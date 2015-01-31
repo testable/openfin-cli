@@ -14,7 +14,7 @@ var cli = meow({
         '-l --launch launch this configuration',
         '--version current version of the tool',
         'Example',
-        '  openfin-cli -l -c myconfig.json -u http://www.openfin.co'
+        '  openfin -l -c myconfig.json -u http://www.openfin.co'
     ].join('\n')
 });
 openfinCli(cli.input, cli.flags);
