@@ -17,7 +17,6 @@ module.exports = function(str, flags) {
         url = flags.u || flags.url,
         config = flags.c || flags.config || 'config.json',
         launch = flags.l || flags.launch,
-        rvmPath = process.execPath.substring(0, process.execPath.lastIndexOf('\\')) + '\\OpenFinRVM.exe',
         startup_app = {},
         configAction;
 
