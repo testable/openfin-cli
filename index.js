@@ -4,6 +4,25 @@ var configBuilder = require('openfin-config-builder'),
     path = require('path'),
     fs = require('fs');
 
+function main(str, flags) {
+    var name = flags.n || flags.name,
+        url = flags.u || flags.url,
+        config = flags.c || flags.config || 'config.json',
+        launch = flags.l || flags.launch;
+
+    if (isEmpty(flags)) {
+        console.log('please see options: openfin --help');
+        return;
+    }
+
+    writeToConfig(name, url, config, function () {
+        if (launch) {
+            launchOpenfin(config);
+        }
+    });
+}
+
+//makeshift is object empty function
 function isEmpty(flags) {
     for (var key in flags) {
         if (flags.hasOwnProperty(key)) {
@@ -12,21 +31,20 @@ function isEmpty(flags) {
     }
     return true;
 }
-module.exports = function(str, flags) {
-    var name = flags.n || flags.name,
-        url = flags.u || flags.url,
-        config = flags.c || flags.config || 'config.json',
-        launch = flags.l || flags.launch,
-        startup_app = {},
-        configAction;
 
-    if (isEmpty(flags)) {
-        console.log('please see options: openfin --help');
-        return;
-    }
-    // console.log('name is:', name || 'you did not specify a name, falling back to defaults');
-    // console.log('url is:', url || 'you did not specify a url, falling back to defaults');
-    // console.log('config file location is:', path.resolve(config));
+//will launch download the rvm and launch openfin
+function launchOpenfin (config) {
+    openfinLauncher.launchOpenFin({
+        configPath: path.resolve(config)
+    }).fail(function(err) {
+        console.log('launch failed', err);
+    });
+}
+
+//write the specified config to disk.
+function writeToConfig(name, url, config, callback) {
+    var startup_app = {},
+        configAction;
 
     fs.exists(config, function(exists) {
         if (exists) {
@@ -43,21 +61,16 @@ module.exports = function(str, flags) {
             }
         }
 
-        //we take the specified action.
+        //create or update the config
         configAction({
             startup_app: startup_app
-        }, config).then(function() {
-            console.log('created config file:', path.resolve(config));
-            if (launch) {
-                openfinLauncher.launchOpenFin({
-                    configPath: path.resolve(config)
-                }).fail(function(err) {
-                    console.log('launch failed', err);
-                });
-            }
-        }).fail(function(err) {
+        }, config).fail(function(err) {
             console.log(err);
+        }).done(function (){
+            callback();
         });
     });
+}
 
-};
+
+module.exports = main;
