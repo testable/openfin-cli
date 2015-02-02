@@ -15,7 +15,7 @@ function main(str, flags) {
         return;
     }
 
-    writeToConfig(name, url, config, function () {
+    writeToConfig(name, url, config, function() {
         if (launch) {
             launchOpenfin(config);
         }
@@ -33,7 +33,7 @@ function isEmpty(flags) {
 }
 
 //will launch download the rvm and launch openfin
-function launchOpenfin (config) {
+function launchOpenfin(config) {
     openfinLauncher.launchOpenFin({
         configPath: path.resolve(config)
     }).fail(function(err) {
@@ -44,13 +44,16 @@ function launchOpenfin (config) {
 //write the specified config to disk.
 function writeToConfig(name, url, config, callback) {
     var startup_app = {},
-        configAction;
+        configAction,
+        actionMessage;
 
     fs.exists(config, function(exists) {
         if (exists) {
             configAction = configBuilder.update;
+            actionMessage = 'using config';
         } else {
             configAction = configBuilder.create;
+            actionMessage = 'successfully created config';
         }
         if (config) {
             if (name) {
@@ -66,7 +69,8 @@ function writeToConfig(name, url, config, callback) {
             startup_app: startup_app
         }, config).fail(function(err) {
             console.log(err);
-        }).done(function (){
+        }).done(function() {
+            console.log(actionMessage, path.resolve(config));
             callback();
         });
     });
