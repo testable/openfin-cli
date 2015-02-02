@@ -1,4 +1,6 @@
-> OpenFin Runtime cli tool
+# OpenFin Runtime cli tool
+
+[![Build Status](https://travis-ci.org/openfin/openfin-cli.svg?branch=master)](https://travis-ci.org/openfin/openfin-cli)
 
 The OpenFin Cli tool will allow you to launch the OpenFin runtime given a url or a configuration file, it will also allow you to create configuration files by giving only name and url.
 
