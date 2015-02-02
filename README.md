@@ -20,6 +20,40 @@ $ npm install --global openfin-cli
 $ openfin --help
 ```
 
+##Examples
+
+####Launching an application
+
+```sh
+$ openfin --launch --url http://www.openfin.co
+```
+
+Shorthand
+```sh
+$ openfin -l -u http://www.openfin.co
+```
+
+####Creating a config file
+
+```sh
+$ openfin --config myconfig.json --name myAppName --url http://www.openfin.co
+```
+
+Shorthand
+```sh
+$ openfin  -c myconfig.json -n myAppName -u http://www.openfin.co
+```
+
+####Launching a given config file
+
+```sh
+$ openfin --launch --config myconfig.json
+```
+
+Shorthand
+```sh
+$ openfin -l -c myconfig.json
+```
 
 ## License
 
