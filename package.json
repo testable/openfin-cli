@@ -37,7 +37,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "preinstall" : "node download-rvm.js"
+    "postinstall" : "node download-rvm.js"
   },
   "bin": {
     "openfin": "cli.js",
