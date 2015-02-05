@@ -1,6 +1,6 @@
 {
   "name": "openfin-cli",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "OpenFin Runtime cli tool",
   "homepage": "http://www.openfin.co",
   "author": {
@@ -13,7 +13,8 @@
   "files": [
     "index.js",
     "cli.js",
-    "download-rvm.js"
+    "download-rvm.js",
+    "OpenFinRVM.exe"
   ],
   "keywords": [
     "openfin-cli",
@@ -37,7 +38,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "install" : "node download-rvm.js"
+    "prepublish" : "node download-rvm.js"
   },
   "bin": {
     "openfin": "cli.js",
