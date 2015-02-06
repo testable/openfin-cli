@@ -7,7 +7,7 @@ var configBuilder = require('openfin-config-builder'),
 function main(str, flags) {
     var name = flags.n || flags.name,
         url = flags.u || flags.url,
-        config = flags.c || flags.config || 'config.json',
+        config = flags.c || flags.config || 'app.json',
         launch = flags.l || flags.launch;
 
     if (isEmpty(flags)) {
@@ -73,6 +73,7 @@ function launchOpenfin(config) {
 //write the specified config to disk.
 function writeToConfig(name, url, config, callback) {
     var startup_app = {},
+        shortcut = {},
         configAction,
         actionMessage;
 
@@ -87,6 +88,7 @@ function writeToConfig(name, url, config, callback) {
         if (config) {
             if (name) {
                 startup_app.name = name;
+                shortcut.name = name;
             }
             if (url) {
                 startup_app.url = url;
@@ -95,7 +97,8 @@ function writeToConfig(name, url, config, callback) {
 
         //create or update the config
         configAction({
-            startup_app: startup_app
+            startup_app: startup_app,
+            shortcut: shortcut
         }, config).fail(function(err) {
             console.log(err);
         }).done(function(configObj) {
