@@ -15,12 +15,12 @@
     "cli.js"
   ],
   "keywords": [
-    "openfin-cli",
-    ""
+    "openfin-cli"
   ],
   "dependencies": {
     "meow": "^2.0.0",
-    "openfin-config-builder": "^1.0.4",
+    "openfin-config-builder": "^1.0.5",
+    "openfin-installer": "^0.1.0",
     "openfin-launcher": "^0.1.3"
   },
   "devDependencies": {

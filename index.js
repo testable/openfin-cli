@@ -15,12 +15,40 @@ function main(str, flags) {
         return;
     }
 
-    writeToConfig(name, url, config, function() {
+    writeToConfig(name, url, config, function(configObj) {
         if (launch) {
             launchOpenfin(config);
         }
+
+        fetchInstaller(flags, configObj);
     });
 }
+
+function fetchInstaller (flags, configObj){
+    var installer = flags.i || flags.installer,
+        hyperlink = flags.h || flags.hyperlink,
+        destination = flags.d || flags.destination,
+        name = flags.n || flags.name || configObj.startup_app.name || 'openfin',
+        openfinInstaller = require('openfin-installer')(configObj);
+
+    if (destination){
+        openfinInstaller
+            .fetchInstaller({
+                destination: destination
+            })
+            .then(function(){
+                console.log('Installer zip written to', destination);
+            },
+            function(reason){
+                console.log(reason);
+            });
+    }
+
+    if (hyperlink){
+        console.log('\n',openfinInstaller.generateInstallUrl(name, installer), '\n');
+    }
+}
+
 
 //makeshift is object empty function
 function isEmpty(flags) {
@@ -69,9 +97,9 @@ function writeToConfig(name, url, config, callback) {
             startup_app: startup_app
         }, config).fail(function(err) {
             console.log(err);
-        }).done(function() {
+        }).done(function(configObj) {
             console.log(actionMessage, path.resolve(config));
-            callback();
+            callback(configObj);
         });
     });
 }
