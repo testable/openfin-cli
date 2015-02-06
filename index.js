@@ -63,7 +63,8 @@ function isEmpty(flags) {
 //will launch download the rvm and launch openfin
 function launchOpenfin(config) {
     openfinLauncher.launchOpenFin({
-        configPath: path.resolve(config)
+        configPath: path.resolve(config),
+        rvmGlobalCommand: 'OpenFinRVM'
     }).fail(function(err) {
         console.log('launch failed', err);
     });
