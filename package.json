@@ -17,12 +17,12 @@
     "OpenFinRVM.exe"
   ],
   "keywords": [
-    "openfin-cli",
-    ""
+    "openfin-cli"
   ],
   "dependencies": {
     "meow": "^2.0.0",
     "openfin-config-builder": ">=1.0.6",
+    "openfin-installer": ">=0.1.0",
     "openfin-launcher": ">=0.2.0"
   },
   "devDependencies": {
@@ -38,10 +38,10 @@
   },
   "scripts": {
     "test": "grunt",
-    "prepublish" : "node download-rvm.js"
+    "prepublish": "node download-rvm.js"
   },
   "bin": {
     "openfin": "cli.js",
-    "OpenFinRVM" : "OpenFinRVM.exe"
+    "OpenFinRVM": "OpenFinRVM.exe"
   }
 }

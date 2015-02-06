@@ -57,6 +57,29 @@ Shorthand
 $ openfin -l -c myconfig.json
 ```
 
+####Generate installer URL
+Will print a url to the console with the name from your config file and the hosted confg
+file url provided via the `-i` or `--installer` flag
+
+````sh
+$ openfin --hyperlink --installer http://goo.gl/w2747v
+````
+Shorthand
+````sh
+$ openfin -h -i http://goo.gl/w2747v
+````
+
+####Download an installer zip locally
+Use the `-d` or `--destination` flag to specify the directory of the download. To download to the current directory use `-d .` or `--destination .`
+
+````sh
+$ openfin --destination my-dist-directory --installer http://goo.gl/w2747v
+````
+Shorthand
+````sh
+$ openfin -d my-dist-directory -i http://goo.gl/w2747v
+````
+
 ## License
 
 MIT
