@@ -26,7 +26,7 @@ function main(cli) {
                 launchOpenfin(config);
             }
 
-            if(configObj) {
+            if (configObj) {
                 fetchInstaller(flags, configObj);
             }
         });
@@ -35,28 +35,28 @@ function main(cli) {
     }
 }
 
-function fetchInstaller (flags, configObj){
+function fetchInstaller(flags, configObj) {
     var installer = flags.i || flags.installer,
         hyperlink = flags.h || flags.hyperlink,
         destination = flags.d || flags.destination,
         name = flags.n || flags.name || configObj.startup_app.name || 'openfin',
         openfinInstaller = require('openfin-installer')(configObj);
 
-    if (destination){
+    if (destination) {
         openfinInstaller
             .fetchInstaller({
                 destination: destination
             })
-            .then(function(){
-                console.log('Installer zip written to', destination);
-            },
-            function(reason){
-                console.log(reason);
-            });
+            .then(function() {
+                    console.log('Installer zip written to', destination);
+                },
+                function(reason) {
+                    console.log(reason);
+                });
     }
 
-    if (hyperlink){
-        console.log('\n',openfinInstaller.generateInstallUrl(encodeURIComponent(name), installer), '\n');
+    if (hyperlink) {
+        console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), installer), '\n');
     }
 }
 
@@ -74,7 +74,7 @@ function isEmpty(flags) {
     return true;
 }
 
-function onError (message, err) {
+function onError(message, err) {
     console.log(message, err);
     console.log(meow.help);
 }
@@ -92,8 +92,8 @@ function launchOpenfin(config) {
 //write the specified config to disk.
 function writeToConfig(name, url, config, callback) {
     if (isURL(config)) {
-        request(config, function (err, response, body) {
-            if (!err && response.statusCode == 200) {
+        request(config, function(err, response, body) {
+            if (!err && response.statusCode === 200) {
                 callback(JSON.parse(body));
             }
         });
