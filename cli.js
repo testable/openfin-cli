@@ -22,4 +22,4 @@ var cli = meow({
         '  openfin -l -c myconfig.json -u http://www.openfin.co'
     ].join('\n')
 });
-openfinCli(cli.input, cli.flags);
+openfinCli(cli);
