@@ -50,11 +50,13 @@ $ openfin  -c myconfig.json -n myAppName -u http://www.openfin.co
 
 ```sh
 $ openfin --launch --config myconfig.json
+$ openfin --launch --config http://goo.gl/w2747v
 ```
 
 Shorthand
 ```sh
 $ openfin -l -c myconfig.json
+$opengin -l -c http://goo.gl/w2747v
 ```
 
 ####Generate installer URL
