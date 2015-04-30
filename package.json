@@ -21,9 +21,9 @@
   ],
   "dependencies": {
     "meow": "^2.0.0",
-    "openfin-config-builder": ">=1.0.6",
-    "openfin-installer": ">=0.1.0",
-    "openfin-launcher": ">=0.2.0",
+    "openfin-config-builder": "latest",
+    "openfin-installer": "latest",
+    "openfin-launcher": "latest",
     "request": "^2.53.0"
   },
   "devDependencies": {
