@@ -36,8 +36,7 @@ function main(cli) {
 }
 
 function fetchInstaller(flags, configObj) {
-    var installer = flags.i || flags.installer,
-        hyperlink = flags.h || flags.hyperlink,
+    var hyperlink = flags.h || flags.hyperlink,
         destination = flags.d || flags.destination,
         name = flags.n || flags.name || configObj.startup_app.name || 'openfin',
         openfinInstaller = require('openfin-installer')(configObj),
@@ -50,7 +49,7 @@ function fetchInstaller(flags, configObj) {
             destination : flags.d || flags.destination,
             config: flags.c || null,
             name: name
-        }
+        };
 
     if (destination) {
         openfinInstaller
