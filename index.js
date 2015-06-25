@@ -40,13 +40,21 @@ function fetchInstaller(flags, configObj) {
         hyperlink = flags.h || flags.hyperlink,
         destination = flags.d || flags.destination,
         name = flags.n || flags.name || configObj.startup_app.name || 'openfin',
-        openfinInstaller = require('openfin-installer')(configObj);
+        openfinInstaller = require('openfin-installer')(configObj),
+
+        fetchOptions = {
+            noExt : flags.noExt || null,
+            rvmConfig : flags.rvmConfig || null,
+            supportEmail : flags.supportEmail || null,
+            dnl : flags.dnl || null,
+            destination : flags.d || flags.destination,
+            config: flags.c || null,
+            name: name
+        }
 
     if (destination) {
         openfinInstaller
-            .fetchInstaller({
-                destination: destination
-            })
+            .fetchInstaller(fetchOptions)
             .then(function() {
                     console.log('Installer zip written to', destination);
                 },
@@ -56,7 +64,9 @@ function fetchInstaller(flags, configObj) {
     }
 
     if (hyperlink) {
-        console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), installer), '\n');
+        
+        console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), fetchOptions.config,
+            fetchOptions.noExt, fetchOptions.rvmConfig, fetchOptions.supportEmail, fetchOptions.dnl), '\n');
     }
 }
 
