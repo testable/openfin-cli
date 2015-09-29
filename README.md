@@ -60,15 +60,11 @@ $opengin -l -c http://goo.gl/w2747v
 ```
 
 ####Generate installer URL
-Will print a url to the console with the name from your config file and the hosted confg
-file url provided via the `-i` or `--installer` flag
+Will print a url to the console with the name proivided via the `-n` flag and the hosted confg
+file url provided via the `-c` flag
 
 ````sh
-$ openfin --hyperlink --installer http://goo.gl/w2747v
-````
-Shorthand
-````sh
-$ openfin -h -i http://goo.gl/w2747v
+$ openfin -n OpenFinPOC  -c http://goo.gl/w2747v -h
 ````
 
 ####Download an installer zip locally
