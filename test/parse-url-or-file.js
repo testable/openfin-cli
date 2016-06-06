@@ -26,4 +26,14 @@ describe('parse-url-or-file', function () {
         expect = 'file://' + process.cwd() + '/./index.html';
     assert.equal(parseURLOrFile(url), expect);
   });
+  it('absolute local file', function () {
+    var url = '/usr/local/openfin/index.html',
+        expect = 'file://' + url;
+    assert.equal(parseURLOrFile(url), expect);
+  });
+  it('Windows absolute path', function () {
+    var url = 'C:\\openfin\\index.html',
+        expect = 'file://' + url;
+    assert.equal(parseURLOrFile(url), expect);
+  });
 });
