@@ -1,11 +1,29 @@
-// /*global describe, it */
-// 'use strict';
-// var assert = require('assert');
-// var openfinCli = require('../');
+/*global describe, it */
+'use strict';
+var assert = require('assert');
+var parseURLOrFile = require('../parse-url-or-file');
 
-// describe('openfin-cli node module', function () {
-//   it('must have at least one test', function () {
-//     openfinCli();
-//     assert(false, 'I was too lazy to write any tests. Shame on me.');
-//   });
-// });
+describe('parse-url-or-file', function () {
+  it('regular HTTP URL', function () {
+    var url = 'http://openfin.co/index.html';
+    assert.equal(parseURLOrFile(url), url);
+  });
+  it('secure HTTPS URL', function () {
+    var url = 'https://openfin.co/index.html';
+    assert.equal(parseURLOrFile(url), url);
+  });
+  it('local file URL', function () {
+    var url = 'file:///usr/local/openfin/index.html';
+    assert.equal(parseURLOrFile(url), url);
+  });
+  it('regular local file', function () {
+    var url = 'index.html',
+        expect = 'file://' + process.cwd() + '/index.html';
+    assert.equal(parseURLOrFile(url), expect);
+  });
+  it('relative local file', function () {
+    var url = './index.html',
+        expect = 'file://' + process.cwd() + '/./index.html';
+    assert.equal(parseURLOrFile(url), expect);
+  });
+});
