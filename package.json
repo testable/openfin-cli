@@ -38,7 +38,7 @@
     "grunt-jsbeautifier": "^0.2.7"
   },
   "scripts": {
-    "test": "grunt",
+    "test": "grunt mochacli",
     "prepublish": "node download-rvm.js"
   },
   "bin": {
