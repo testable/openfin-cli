@@ -4,6 +4,7 @@ var configBuilder = require('openfin-config-builder'),
     path = require('path'),
     fs = require('fs'),
     request = require('request'),
+    parseURLOrFile = require('./parse-url-or-file'),
     meow;
 
 function main(cli) {
@@ -11,7 +12,7 @@ function main(cli) {
 
     var flags = cli.flags,
         name = flags.n || flags.name,
-        url = flags.u || flags.url,
+        url = parseURLOrFile(flags.u || flags.url),
         config = flags.c || flags.config || 'app.json',
         launch = flags.l || flags.launch;
 
