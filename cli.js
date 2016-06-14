@@ -17,7 +17,7 @@ var cli = meow({
         '-h --hyperlink return a url to stdout pointing to the OpenFin installer webservice',
         '-d --destination write the results of -i to disk using this path',
 
-        
+
         '--file-name <application name to be used in the config>',
         '--no-ext <If set “true”, the file is extention-less>',
         '--rvm-config <URL that points to the RVM config. Must be a full URL.>',

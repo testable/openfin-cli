@@ -1,6 +1,6 @@
 var URL_PATTERN = /^\s*(https?|file):\/\//i,
     ABSOLUTE_PATTERN = /^\s*(\/|[a-z]:[/\\])/i;
- 
+
 module.exports = function(flag) {
     switch (true) {
         case URL_PATTERN.test(flag):

@@ -43,11 +43,11 @@ function fetchInstaller(flags, configObj) {
         openfinInstaller = require('openfin-installer')(configObj),
 
         fetchOptions = {
-            noExt : flags.noExt || null,
-            rvmConfig : flags.rvmConfig || null,
-            supportEmail : flags.supportEmail || null,
-            dnl : flags.dnl || null,
-            destination : flags.d || flags.destination,
+            noExt: flags.noExt || null,
+            rvmConfig: flags.rvmConfig || null,
+            supportEmail: flags.supportEmail || null,
+            dnl: flags.dnl || null,
+            destination: flags.d || flags.destination,
             config: flags.c || null,
             name: name
         };
