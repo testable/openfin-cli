@@ -64,7 +64,7 @@ function fetchInstaller(flags, configObj) {
     }
 
     if (hyperlink) {
-        
+
         console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), fetchOptions.config,
             fetchOptions.noExt, fetchOptions.rvmConfig, fetchOptions.supportEmail, fetchOptions.dnl), '\n');
     }
@@ -92,8 +92,7 @@ function onError(message, err) {
 //will launch download the rvm and launch openfin
 function launchOpenfin(config) {
     openfinLauncher.launchOpenFin({
-        configPath: isURL(config) ? config : path.resolve(config),
-        rvmGlobalCommand: 'OpenFinRVM'
+        configPath: isURL(config) ? config : path.resolve(config)
     }).fail(function(err) {
         onError('launch failed', err);
     });

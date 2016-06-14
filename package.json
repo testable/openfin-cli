@@ -12,9 +12,7 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "cli.js",
-    "download-rvm.js",
-    "OpenFinRVM.exe"
+    "cli.js"
   ],
   "keywords": [
     "openfin-cli"
@@ -38,11 +36,9 @@
     "grunt-jsbeautifier": "^0.2.7"
   },
   "scripts": {
-    "test": "grunt mochacli",
-    "prepublish": "node download-rvm.js"
+    "test": "grunt mochacli"
   },
   "bin": {
-    "openfin": "cli.js",
-    "OpenFinRVM": "OpenFinRVM.exe"
+    "openfin": "cli.js"
   }
 }
