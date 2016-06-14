@@ -12,9 +12,10 @@ function main(cli) {
 
     var flags = cli.flags,
         name = flags.n || flags.name,
-        url = parseURLOrFile(flags.u || flags.url),
+        url = flags.u || flags.url,
         config = flags.c || flags.config || 'app.json',
-        launch = flags.l || flags.launch;
+        launch = flags.l || flags.launch,
+        parsedUrl = url ? parseURLOrFile(url) : url;
 
     if (isEmpty(flags)) {
         console.log(cli.help);
@@ -22,7 +23,7 @@ function main(cli) {
     }
 
     try {
-        writeToConfig(name, url, config, function(configObj) {
+        writeToConfig(name, parsedUrl, config, function(configObj) {
             if (launch) {
                 launchOpenfin(config);
             }
