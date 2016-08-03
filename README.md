@@ -18,7 +18,6 @@ $ npm install -g openfin-cli
 ## Usage
 
 ```sh
-$ npm install --global openfin-cli
 $ openfin --help
 ```
 
@@ -56,7 +55,7 @@ $ openfin --launch --config http://goo.gl/w2747v
 Shorthand
 ```sh
 $ openfin -l -c myconfig.json
-$opengin -l -c http://goo.gl/w2747v
+$ openfin -l -c http://goo.gl/w2747v
 ```
 
 ####Generate installer URL
@@ -64,7 +63,7 @@ Will print a url to the console with the name proivided via the `-n` flag and th
 file url provided via the `-c` flag
 
 ````sh
-$ openfin -n OpenFinPOC  -c http://goo.gl/w2747v -h
+$ openfin -n OpenFinPOC -c http://goo.gl/w2747v -h
 ````
 
 ####Download an installer zip locally
