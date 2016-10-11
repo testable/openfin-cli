@@ -23,6 +23,12 @@ $ openfin --help
 
 ##Examples
 
+####Launching OpenFin Demos
+```
+$ openfin --launch --config http://cdn.openfin.co/demos/hyperblotter/app.json
+$ openfin --launch --config https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json
+```
+
 ####Launching an application
 
 ```sh
