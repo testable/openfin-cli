@@ -1,11 +1,11 @@
 {
   "name": "openfin-cli",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "OpenFin Runtime cli tool",
   "homepage": "http://www.openfin.co",
   "author": {
     "name": "Ricardo de Pena",
-    "email": "ricardo.depena@gmail.com",
+    "email": "ricardo@openfin.co",
     "url": "http://www.openfin.co"
   },
   "repository": "openfin/openfin-cli",
