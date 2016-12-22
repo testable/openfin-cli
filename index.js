@@ -40,7 +40,8 @@ function main(cli) {
 function fetchInstaller(flags, configObj) {
     var hyperlink = flags.h || flags.hyperlink,
         destination = flags.d || flags.destination,
-        name = flags.n || flags.name || configObj.startup_app.name || 'openfin',
+        appName = configObj.startup_app ? configObj.startup_app.name : null,
+        name = flags.n || flags.name || appName || 'openfin',
         openfinInstaller = require('openfin-installer')(configObj),
 
         fetchOptions = {
@@ -110,8 +111,8 @@ function writeToConfig(name, url, config, callback) {
         return;
     }
 
-    var startup_app = {},
-        shortcut = {},
+    var shortcut = {},
+        startup_app = {},
         configAction,
         actionMessage;
 
@@ -127,6 +128,8 @@ function writeToConfig(name, url, config, callback) {
             if (name) {
                 startup_app.name = name;
                 shortcut.name = name;
+                shortcut.company = name;
+                shortcut.description = name;
             }
             if (url) {
                 startup_app.url = url;
@@ -135,7 +138,7 @@ function writeToConfig(name, url, config, callback) {
 
         //create or update the config
         configAction({
-            startup_app: startup_app,
+            startup_app: url ? startup_app : null,
             shortcut: shortcut
         }, config).fail(function(err) {
             console.log(err);
