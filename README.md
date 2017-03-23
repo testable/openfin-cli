@@ -21,15 +21,15 @@ $ npm install -g openfin-cli
 $ openfin --help
 ```
 
-##Examples
+## Examples
 
-####Launching OpenFin Demos
+#### Launching OpenFin Demos
 ```
 $ openfin --launch --config http://cdn.openfin.co/demos/hyperblotter/app.json
 $ openfin --launch --config https://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/app.json
 ```
 
-####Launching an application
+#### Launching an application
 
 ```sh
 $ openfin --launch --url http://www.openfin.co
@@ -40,7 +40,7 @@ Shorthand
 $ openfin -l -u http://www.openfin.co
 ```
 
-####Creating a config file
+#### Creating a config file
 
 ```sh
 $ openfin --config myconfig.json --name myAppName --url http://www.openfin.co
@@ -51,7 +51,7 @@ Shorthand
 $ openfin  -c myconfig.json -n myAppName -u http://www.openfin.co
 ```
 
-####Launching a given config file
+#### Launching a given config file
 
 ```sh
 $ openfin --launch --config myconfig.json
@@ -64,33 +64,33 @@ $ openfin -l -c myconfig.json
 $ openfin -l -c http://goo.gl/w2747v
 ```
 
-####Generate installer URL
+#### Generate installer URL
 Will print a url to the console with the name proivided via the `-n` flag and the hosted confg
 file url provided via the `-c` flag
 
-````sh
+```sh
 $ openfin -n OpenFinPOC -c http://goo.gl/w2747v -h
-````
+```
 
 ####Download an installer zip locally
 Use the `-d` or `--destination` flag to specify the directory of the download. To download to the current directory use `-d .` or `--destination .`
 
-````sh
+```sh
 $ openfin --destination my-dist-directory --installer http://goo.gl/w2747v
-````
+```
 Shorthand
-````sh
+```sh
 $ openfin -d my-dist-directory -i http://goo.gl/w2747v
-````
+```
 
-####Installer config options
-````
+#### Installer config options
+```
 --no-ext If set “true”, the file is extention-less'
 --rvm-config URL that points to the RVM config. Must be a full URL.'
 '--support-email The email address to display in the installer when an error occurs. Default value = support@openfin.co"'
 --dnl Installs an application without launching it. Set value to true [dnl=true]'
 
-````
+```
 ## License
 
 MIT
