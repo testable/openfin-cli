@@ -72,7 +72,7 @@ file url provided via the `-c` flag
 $ openfin -n OpenFinPOC -c http://goo.gl/w2747v -h
 ```
 
-####Download an installer zip locally
+#### Download an installer zip locally
 Use the `-d` or `--destination` flag to specify the directory of the download. To download to the current directory use `-d .` or `--destination .`
 
 ```sh
