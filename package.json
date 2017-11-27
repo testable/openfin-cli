@@ -37,7 +37,8 @@
     "grunt-jsbeautifier": "^0.2.7"
   },
   "scripts": {
-    "test": "grunt mochacli"
+      "start": "node cli",
+      "test": "grunt mochacli"
   },
   "bin": {
     "openfin": "cli.js"
