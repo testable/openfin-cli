@@ -15,6 +15,7 @@ function main(cli) {
         url = flags.u || flags.url,
         config = flags.c || flags.config || 'app.json',
         launch = flags.l || flags.launch,
+        devtools_port = flags.p || flags.devtoolsPort || "9090",
         parsedUrl = url ? parseURLOrFile(url) : url;
 
     if (isEmpty(flags)) {
@@ -23,7 +24,7 @@ function main(cli) {
     }
 
     try {
-        writeToConfig(name, parsedUrl, config, function(configObj) {
+        writeToConfig(name, parsedUrl, config, devtools_port, function(configObj) {
             if (launch) {
                 launchOpenfin(config);
             }
@@ -101,7 +102,7 @@ function launchOpenfin(config) {
 }
 
 //write the specified config to disk.
-function writeToConfig(name, url, config, callback) {
+function writeToConfig(name, url, config, devtools_port, callback) {
     if (isURL(config)) {
         request(config, function(err, response, body) {
             if (!err && response.statusCode === 200) {
@@ -138,6 +139,7 @@ function writeToConfig(name, url, config, callback) {
 
         //create or update the config
         configAction({
+            devtools_port: Number(devtools_port),
             startup_app: url ? startup_app : null,
             shortcut: shortcut
         }, config).fail(function(err) {

@@ -12,11 +12,11 @@ var cli = meow({
         '-n --name <application name to be used in the config>',
         '-u --url <application url>',
         '-l --launch launch this configuration',
+        '-p --devtools-port devtools port number',
 
         '-i --installer a url to an OpenFin config file ',
         '-h --hyperlink return a url to stdout pointing to the OpenFin installer webservice',
         '-d --destination write the results of -i to disk using this path',
-
 
         '--file-name <application name to be used in the config>',
         '--no-ext <If set “true”, the file is extention-less>',
