@@ -15,7 +15,9 @@ function main(cli) {
         url = flags.u || flags.url,
         config = flags.c || flags.config || 'app.json',
         launch = flags.l || flags.launch,
-        devtools_port = flags.p || flags.devtoolsPort || "9090",
+        devtools_port = flags.p || flags.devtoolsPort,
+        runtime_version = flags.v || flags.runtimeVersion,
+        runtinme_arguments = flags.a || flags.runtimeArguments,
         parsedUrl = url ? parseURLOrFile(url) : url;
 
     if (isEmpty(flags)) {
@@ -24,7 +26,7 @@ function main(cli) {
     }
 
     try {
-        writeToConfig(name, parsedUrl, config, devtools_port, function(configObj) {
+        writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, runtinme_arguments, function(configObj) {
             if (launch) {
                 launchOpenfin(config);
             }
@@ -102,7 +104,7 @@ function launchOpenfin(config) {
 }
 
 //write the specified config to disk.
-function writeToConfig(name, url, config, devtools_port, callback) {
+function writeToConfig(name, url, config, devtools_port, runtime_version, runtinme_arguments, callback) {
     if (isURL(config)) {
         request(config, function(err, response, body) {
             if (!err && response.statusCode === 200) {
@@ -114,6 +116,7 @@ function writeToConfig(name, url, config, devtools_port, callback) {
 
     var shortcut = {},
         startup_app = {},
+        runtime = {},
         configAction,
         actionMessage;
 
@@ -135,14 +138,32 @@ function writeToConfig(name, url, config, devtools_port, callback) {
             if (url) {
                 startup_app.url = url;
             }
+
+            if (runtime_version || runtinme_arguments) {
+                if (runtime_version) {
+                    runtime.version = runtime_version;
+                }
+                if (runtinme_arguments) {
+                    runtime.arguments = runtinme_arguments.replace(/'/g, '').replace(/,/g, ' ');
+                }
+            }
+        }
+
+        var appConfigObj = {
+            startup_app: url ? startup_app : null,
+            shortcut: shortcut
+        }
+
+        if (devtools_port) {
+            appConfigObj.devtools_port = devtools_port;
+        }
+
+        if (runtime_version || runtinme_arguments) {
+            appConfigObj.runtime = runtime;
         }
 
         //create or update the config
-        configAction({
-            devtools_port: Number(devtools_port),
-            startup_app: url ? startup_app : null,
-            shortcut: shortcut
-        }, config).fail(function(err) {
+        configAction(appConfigObj, config).fail(function(err) {
             console.log(err);
         }).done(function(configObj) {
             console.log(actionMessage, path.resolve(config));
