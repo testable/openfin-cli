@@ -17,7 +17,6 @@ function main(cli) {
         launch = flags.l || flags.launch,
         devtools_port = flags.p || flags.devtoolsPort,
         runtime_version = flags.v || flags.runtimeVersion,
-        runtinme_arguments = flags.a || flags.runtimeArguments,
         parsedUrl = url ? parseURLOrFile(url) : url;
 
     if (isEmpty(flags)) {
@@ -26,7 +25,7 @@ function main(cli) {
     }
 
     try {
-        writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, runtinme_arguments, function(configObj) {
+        writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, function(configObj) {
             if (launch) {
                 launchOpenfin(config);
             }
@@ -104,7 +103,7 @@ function launchOpenfin(config) {
 }
 
 //write the specified config to disk.
-function writeToConfig(name, url, config, devtools_port, runtime_version, runtinme_arguments, callback) {
+function writeToConfig(name, url, config, devtools_port, runtime_version, callback) {
     if (isURL(config)) {
         request(config, function(err, response, body) {
             if (!err && response.statusCode === 200) {
@@ -139,13 +138,8 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, runtin
                 startup_app.url = url;
             }
 
-            if (runtime_version || runtinme_arguments) {
-                if (runtime_version) {
-                    runtime.version = runtime_version;
-                }
-                if (runtinme_arguments) {
-                    runtime.arguments = runtinme_arguments.replace(/'/g, '').replace(/,/g, ' ');
-                }
+            if (runtime_version) {
+                runtime.version = runtime_version;
             }
         }
 
@@ -158,7 +152,7 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, runtin
             appConfigObj.devtools_port = devtools_port;
         }
 
-        if (runtime_version || runtinme_arguments) {
+        if (runtime_version) {
             appConfigObj.runtime = runtime;
         }
 
