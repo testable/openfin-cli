@@ -14,7 +14,6 @@ var cli = meow({
         '-l --launch launch this configuration',
         '-p --devtools-port devtools port number',
         '-v --runtime-version runtime version',
-        '-a --runtime-arguments runtime arguments',
 
         '-i --installer a url to an OpenFin config file ',
         '-h --hyperlink return a url to stdout pointing to the OpenFin installer webservice',
