@@ -79,7 +79,7 @@ function isURL(str) {
 //makeshift is object empty function
 function isEmpty(flags) {
     for (var key in flags) {
-        if (flags.hasOwnProperty(key)) {
+        if (flags.hasOwnProperty(key) && flags[key] !== false) {
             return false;
         }
     }

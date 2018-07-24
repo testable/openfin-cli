@@ -8,6 +8,9 @@
     "email": "ricardo@openfin.co",
     "url": "http://www.openfin.co"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "repository": "openfin/openfin-cli",
   "license": "MIT",
   "files": [
@@ -19,22 +22,23 @@
     "openfin-cli"
   ],
   "dependencies": {
-    "meow": "^2.0.0",
+    "meow": "^5.0.0",
     "openfin-config-builder": "latest",
     "openfin-installer": "latest",
     "openfin-launcher": "latest",
     "request": "^2.53.0"
   },
   "devDependencies": {
+    "grunt": "^1.0.2",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-contrib-watch": "^0.6.1",
-    "load-grunt-tasks": "^1.0.0",
-    "time-grunt": "^1.0.0",
+    "grunt-jsbeautifier": "^0.2.7",
     "grunt-mocha-cli": "^1.11.0",
     "jshint-stylish": "^1.0.0",
-    "grunt-jsbeautifier": "^0.2.7"
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0"
   },
   "scripts": {
       "start": "node cli",
