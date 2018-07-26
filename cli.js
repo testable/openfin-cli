@@ -3,6 +3,14 @@
 'use strict';
 var meow = require('meow'),
     openfinCli = require('./');
+const options = {
+    flags: {
+        name: { alias: 'n', type: 'string' },
+        url: { alias: 'u', type: 'string' },
+        config: { alias: 'c', type: 'string' },
+        launch: { alias: 'l', type: 'boolean' }
+    }
+};
 
 var cli = meow({
     help: [
