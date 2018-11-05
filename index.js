@@ -1,11 +1,11 @@
 'use strict';
 var configBuilder = require('openfin-config-builder'),
+    { launch, connect } = require('hadouken-js-adapter'),
     path = require('path'),
     fs = require('fs'),
     request = require('request'),
     parseURLOrFile = require('./parse-url-or-file'),
-    meow,
-    { launch, connect } = require('hadouken-js-adapter');
+    meow;
 
 function main(cli) {
     meow = cli;
