@@ -56,10 +56,9 @@ function onError(message, err) {
 async function launchOpenfin(config) {
     try {
         const manifestUrl = isURL(config) ? config : path.resolve(config);
-        const port = await launch({ manifestUrl });
         const fin = await connect({
             uuid: 'openfin-cli-server-connection',
-            address: `ws://localhost:${port}`,
+            manifestUrl,
             nonPersistent: true
         });
         fin.once('disconnected', process.exit);
