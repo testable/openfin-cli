@@ -26,51 +26,10 @@ function main(cli) {
 
     try {
         writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, function (configObj) {
-            if (launch) {
-                launchOpenfin(config);
-            }
-
-            if (configObj) {
-                fetchInstaller(flags, configObj);
-            }
+            if (launch) launchOpenfin(config);
         });
     } catch (err) {
         onError('Failed:', err);
-    }
-}
-
-function fetchInstaller(flags, configObj) {
-    var hyperlink = flags.h || flags.hyperlink,
-        destination = flags.d || flags.destination,
-        appName = configObj.startup_app ? configObj.startup_app.name : null,
-        name = flags.n || flags.name || appName || 'openfin',
-        openfinInstaller = require('openfin-installer')(configObj),
-
-        fetchOptions = {
-            noExt: flags.noExt || null,
-            rvmConfig: flags.rvmConfig || null,
-            supportEmail: flags.supportEmail || null,
-            dnl: flags.dnl || null,
-            destination: flags.d || flags.destination,
-            config: flags.c || null,
-            name: name
-        };
-
-    if (destination) {
-        openfinInstaller
-            .fetchInstaller(fetchOptions)
-            .then(function () {
-                console.log('Installer zip written to', destination);
-            },
-                function (reason) {
-                    console.log(reason);
-                });
-    }
-
-    if (hyperlink) {
-
-        console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), fetchOptions.config,
-            fetchOptions.noExt, fetchOptions.rvmConfig, fetchOptions.supportEmail, fetchOptions.dnl), '\n');
     }
 }
 
