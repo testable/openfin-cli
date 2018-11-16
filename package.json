@@ -22,10 +22,10 @@
     "openfin-cli"
   ],
   "dependencies": {
+    "hadouken-js-adapter": "^0.36.1-alpha.1",
     "meow": "^5.0.0",
     "openfin-config-builder": "latest",
     "openfin-installer": "latest",
-    "openfin-launcher": "latest",
     "request": "^2.87.0"
   },
   "devDependencies": {

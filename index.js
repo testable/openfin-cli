@@ -1,6 +1,6 @@
 'use strict';
 var configBuilder = require('openfin-config-builder'),
-    openfinLauncher = require('openfin-launcher'),
+    { connect } = require('hadouken-js-adapter'),
     path = require('path'),
     fs = require('fs'),
     request = require('request'),
@@ -25,52 +25,11 @@ function main(cli) {
     }
 
     try {
-        writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, function(configObj) {
-            if (launch) {
-                launchOpenfin(config);
-            }
-
-            if (configObj) {
-                fetchInstaller(flags, configObj);
-            }
+        writeToConfig(name, parsedUrl, config, devtools_port, runtime_version, function (configObj) {
+            if (launch) launchOpenfin(config);
         });
     } catch (err) {
         onError('Failed:', err);
-    }
-}
-
-function fetchInstaller(flags, configObj) {
-    var hyperlink = flags.h || flags.hyperlink,
-        destination = flags.d || flags.destination,
-        appName = configObj.startup_app ? configObj.startup_app.name : null,
-        name = flags.n || flags.name || appName || 'openfin',
-        openfinInstaller = require('openfin-installer')(configObj),
-
-        fetchOptions = {
-            noExt: flags.noExt || null,
-            rvmConfig: flags.rvmConfig || null,
-            supportEmail: flags.supportEmail || null,
-            dnl: flags.dnl || null,
-            destination: flags.d || flags.destination,
-            config: flags.c || null,
-            name: name
-        };
-
-    if (destination) {
-        openfinInstaller
-            .fetchInstaller(fetchOptions)
-            .then(function() {
-                    console.log('Installer zip written to', destination);
-                },
-                function(reason) {
-                    console.log(reason);
-                });
-    }
-
-    if (hyperlink) {
-
-        console.log('\n', openfinInstaller.generateInstallUrl(encodeURIComponent(name), fetchOptions.config,
-            fetchOptions.noExt, fetchOptions.rvmConfig, fetchOptions.supportEmail, fetchOptions.dnl), '\n');
     }
 }
 
@@ -94,18 +53,24 @@ function onError(message, err) {
 }
 
 //will launch download the rvm and launch openfin
-function launchOpenfin(config) {
-    openfinLauncher.launchOpenFin({
-        configPath: isURL(config) ? config : path.resolve(config)
-    }).fail(function(err) {
-        onError('launch failed', err);
-    });
+async function launchOpenfin(config) {
+    try {
+        const manifestUrl = isURL(config) ? config : path.resolve(config);
+        const fin = await connect({
+            uuid: 'openfin-cli-server-connection',
+            manifestUrl,
+            nonPersistent: true
+        });
+        fin.once('disconnected', process.exit);
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 //write the specified config to disk.
 function writeToConfig(name, url, config, devtools_port, runtime_version, callback) {
     if (isURL(config)) {
-        request(config, function(err, response, body) {
+        request(config, function (err, response, body) {
             if (!err && response.statusCode === 200) {
                 callback(JSON.parse(body));
             }
@@ -119,7 +84,7 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, callba
         configAction,
         actionMessage;
 
-    fs.exists(config, function(exists) {
+    fs.exists(config, function (exists) {
         if (exists) {
             configAction = configBuilder.update;
             actionMessage = 'using config';
@@ -146,7 +111,7 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, callba
         var appConfigObj = {
             startup_app: url ? startup_app : null,
             shortcut: shortcut
-        }
+        };
 
         if (devtools_port) {
             appConfigObj.devtools_port = devtools_port;
@@ -157,9 +122,9 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, callba
         }
 
         //create or update the config
-        configAction(appConfigObj, config).fail(function(err) {
+        configAction(appConfigObj, config).fail(function (err) {
             console.log(err);
-        }).done(function(configObj) {
+        }).done(function (configObj) {
             console.log(actionMessage, path.resolve(config));
             callback(configObj);
         });
