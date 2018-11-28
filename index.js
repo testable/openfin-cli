@@ -1,6 +1,6 @@
 'use strict';
 var configBuilder = require('openfin-config-builder'),
-    { connect } = require('hadouken-js-adapter'),
+    { launch } = require('hadouken-js-adapter'),
     path = require('path'),
     fs = require('fs'),
     request = require('request'),
@@ -56,12 +56,12 @@ function onError(message, err) {
 async function launchOpenfin(config) {
     try {
         const manifestUrl = isURL(config) ? config : path.resolve(config);
-        const fin = await connect({
+        await launch({
             uuid: 'openfin-cli-server-connection',
             manifestUrl,
-            nonPersistent: true
+            nonPersistent: true,
+            installerUI: true
         });
-        fin.once('disconnected', process.exit);
     } catch (err) {
         console.error(err);
     }
