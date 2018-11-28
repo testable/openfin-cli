@@ -122,9 +122,9 @@ function writeToConfig(name, url, config, devtools_port, runtime_version, callba
         }
 
         //create or update the config
-        configAction(appConfigObj, config).fail(function (err) {
+        configAction(appConfigObj, config).catch(function (err) {
             console.log(err);
-        }).done(function (configObj) {
+        }).then(function (configObj) {
             console.log(actionMessage, path.resolve(config));
             callback(configObj);
         });
