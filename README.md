@@ -95,8 +95,7 @@ $ openfin -d my-dist-directory -i http://goo.gl/w2747v
 
 MIT
 
-By downloading OpenFin, you agree to the terms of our [Developer License](https://openfin.co/developer-agreement/)
-
+The code in this repository is covered by the included license.  If you run this code, it may call on the OpenFin RVM or OpenFin Runtime, which are subject to OpenFin’s [Developer License](https://openfin.co/developer-agreement/). If you have questions, please contact support@openfin.co
 
 [npm-url]: https://npmjs.org/package/openfin-cli
 [npm-image]: https://badge.fury.io/js/openfin-cli.svg
