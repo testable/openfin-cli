@@ -93,7 +93,7 @@ $ openfin -d my-dist-directory -i http://goo.gl/w2747v
 ```
 ## License
 
-MIT
+Apache 2.0
 
 The code in this repository is covered by the included license.  If you run this code, it may call on the OpenFin RVM or OpenFin Runtime, which are subject to OpenFin’s [Developer License](https://openfin.co/developer-agreement/). If you have questions, please contact support@openfin.co
 
