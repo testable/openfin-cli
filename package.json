@@ -1,6 +1,6 @@
 {
   "name": "openfin-cli",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "OpenFin Runtime cli tool",
   "homepage": "http://www.openfin.co",
   "author": {
@@ -12,7 +12,7 @@
     "node": ">=6"
   },
   "repository": "openfin/openfin-cli",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "files": [
     "index.js",
     "cli.js",
