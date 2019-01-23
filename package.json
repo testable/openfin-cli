@@ -12,7 +12,7 @@
     "node": ">=6"
   },
   "repository": "openfin/openfin-cli",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "files": [
     "index.js",
     "cli.js",
