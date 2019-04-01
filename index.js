@@ -1,6 +1,6 @@
 'use strict';
 var configBuilder = require('openfin-config-builder'),
-    { launch, connect } = require('z:\\dev\\core\\js-adapter\\'),
+    { launch, connect } = require('hadouken-js-adapter'),
     path = require('path'),
     fs = require('fs'),
     request = require('request'),
