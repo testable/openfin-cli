@@ -39,18 +39,6 @@ Shorthand
 ```sh
 $ openfin -l -u http://www.openfin.co
 ```
-
-#### Creating a config file
-
-```sh
-$ openfin --config myconfig.json --name myAppName --url http://www.openfin.co
-```
-
-Shorthand
-```sh
-$ openfin  -c myconfig.json -n myAppName -u http://www.openfin.co
-```
-
 #### Launching a given config file
 
 ```sh
@@ -62,14 +50,6 @@ Shorthand
 ```sh
 $ openfin -l -c myconfig.json
 $ openfin -l -c http://goo.gl/w2747v
-```
-
-#### Generate installer URL
-Will print a url to the console with the name proivided via the `-n` flag and the hosted confg
-file url provided via the `-c` flag
-
-```sh
-$ openfin -n OpenFinPOC -c http://goo.gl/w2747v -h
 ```
 
 ```
