@@ -72,24 +72,6 @@ file url provided via the `-c` flag
 $ openfin -n OpenFinPOC -c http://goo.gl/w2747v -h
 ```
 
-#### Download an installer zip locally
-Use the `-d` or `--destination` flag to specify the directory of the download. To download to the current directory use `-d .` or `--destination .`
-
-```sh
-$ openfin --destination my-dist-directory --installer http://goo.gl/w2747v
-```
-Shorthand
-```sh
-$ openfin -d my-dist-directory -i http://goo.gl/w2747v
-```
-
-#### Installer config options
-```
---no-ext If set “true”, the file is extention-less'
---rvm-config URL that points to the RVM config. Must be a full URL.'
-'--support-email The email address to display in the installer when an error occurs. Default value = support@openfin.co"'
---dnl Installs an application without launching it. Set value to true [dnl=true]'
-
 ```
 ## License
 
